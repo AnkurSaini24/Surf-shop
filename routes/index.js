@@ -46,13 +46,13 @@ router.get('/forgot', (req, res, next) =>  {
 router.put('/forgot', (req, res, next) =>  {
   res.send('PUT /forgot');
 });
-
-/* GET  /reset */
+  
+/* GET  /reset/:token */
 router.get('/reset', (req, res, next) =>  {
   res.send('GET /reset/:token');
 });
 
-/* PUT  /reset */
+/* PUT  /reset/:token */
 router.put('/reset', (req, res, next) =>  {
   res.send('PUT /reset/:token');
 });
