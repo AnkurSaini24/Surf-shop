@@ -8,6 +8,8 @@ const User = require('./models/user');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const methodOverride =  require('method-override');
+var Port = process.env.PORT || 8080;
 
 
 
@@ -37,9 +39,10 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 
 
 // Configure Passport and Sessions
@@ -78,6 +81,10 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+app.listen(Port,()=>{
+  console.log(`app listening on port ${Port}`);
 });
 
 module.exports = app;
